@@ -6,8 +6,10 @@ require __DIR__ . '/../Backoffice/DataAccess/TorneoDaoMySql.php';
 require __DIR__ . '/../Backoffice/Business/Business.php';
 require __DIR__ . '/../Backoffice/Business/TorneoBusiness.php';
 
+
 $torneoBusiness = new TorneoBusiness;
 $torneos = $torneoBusiness->all();
+
 
 ?>
 
@@ -22,62 +24,41 @@ $torneos = $torneoBusiness->all();
 </head>
 <body>
 
-<div class="header">
-    <?php include_once __DIR__ . '../Partials/navbar.php'?>
+<div>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary header">
+  <div class="container">
+    <a class="navbar-brand" href="/../index.php"><img src="/../img/soccer-ball-logo.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="/../GRUPO13BABYWEB/Backoffice/Pages/misTorneos.php">Torneos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/../GRUPO13BABYWEB/Backoffice/Pages/misEquipos.php">Equipos</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/../GRUPO13BABYWEB/Backoffice/Pages/misArbitros.php">Arbitros</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/../GRUPO13BABYWEB/Backoffice/Pages/misEquipos.php">Estadios</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/../Backoffice/indexAdmin.php">Jugadores</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/../Backoffice/indexAdmin.php">Partidos</a>
+        </li> 
+      </ul>
+    </div>
+  </div>
+</nav>
+
 </div>
 
-<div class="container home">
-        <div>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCreate">Agregar</button>
-            <div class="modal fade modal-lg" id="modalCreate" tabindex="-1" aria-labelledby="modalCreateLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalCreateLabel">Crear Torneo</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/../../Backoffice/Controllers/torneoCreate.php" method="POST" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeHolder="" value="test">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-create" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-success btn-create">Crear torneo</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <table class="table table-striped table-border">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($torneos as $torneo): ?>
-                        <tr>
-                            <th>
-                            <a href="/../Pages/torneo.php?id=<?php echo $torneo->getId(); ?>"><?php echo $torneo->getName() ?></a>
-                            </th>
-                            <th>
-                                <a href="/../Backoffice/Pages/torneoAdmin.php?id=<?php echo $torneo->getId(); ?>"><button type="button" class="btn btn-primary">Editar</button></a>
-                                <form action="/../../Backoffice/Controllers/torneoDelete.php" method="POST">
-                                    <input type="hidden" name="id" value="<?php echo $torneo->getId() ?>">
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </th>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

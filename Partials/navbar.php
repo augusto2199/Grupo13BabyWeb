@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary header">
   <div class="container">
-    <a class="navbar-brand" href="/../index.php"><img src="/../img/soccer-ball-logo.png" alt=""></a>
+    <a class="navbar-brand" href="/../index.php"><img src="/../img/soccer-ball-logo.png" alt=""></a>r
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,7 +12,7 @@
           <a class="nav-link active" aria-current="page" href="/../index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/../Backoffice/indexAdmin.php">Admin</a>
+          <a class="nav-link" href="/../GRUPO13BABYWEB/Backoffice/indexAdmin.php">Admin</a>
         </li>
       </ul>
     </div>

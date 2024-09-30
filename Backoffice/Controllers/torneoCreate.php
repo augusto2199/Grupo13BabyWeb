@@ -7,5 +7,5 @@ $stmt->execute([
     ':name' => $_POST['name'],
 ]);
 
-header('location: /../../Backoffice/indexAdmin.php');
+header('location: /../../GRUPO13BABYWEB/Backoffice/Pages/misTorneos.php');
 ?>
