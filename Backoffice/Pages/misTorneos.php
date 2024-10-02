@@ -38,8 +38,8 @@ $torneos = $torneoBusiness->all();
                     <div class="modal-body">
                         <form action="/../../GRUPO13BABYWEB/Backoffice/Controllers/torneoCreate.php" method="POST" enctype="multipart/form-data">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="name" name="name" placeHolder="" required>
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeHolder="" required>
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -63,7 +63,7 @@ $torneos = $torneoBusiness->all();
             <?php foreach($torneos as $torneo): ?>
                 <tr>
                     <td>
-                        <a href="/../Pages/torneo.php?id=<?php echo $torneo->getId(); ?>"><?php echo $torneo->getName() ?></a>
+                        <a href="/../Pages/torneo.php?id=<?php echo $torneo->getId(); ?>"><?php echo $torneo->getNombre() ?></a>
                     </td>
                     <td>
                         <!-- Boton de editar torneo -->
@@ -82,14 +82,14 @@ $torneos = $torneoBusiness->all();
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="editTorneoModalLabel<?php echo $torneo->getId(); ?>">Editar Torneo: <?php echo $torneo->getName(); ?></h5>
+                        <h5 class="modal-title" id="editTorneoModalLabel<?php echo $torneo->getId(); ?>">Editar Torneo: <?php echo $torneo->getNombre(); ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
                         <form action="/../../GRUPO13BABYWEB/Backoffice/Controllers/torneoEdit.php" method="POST" enctype="multipart/form-data">
                           <div class="mb-3">
-                            <label for="name<?php echo $torneo->getId(); ?>" class="form-label">Nombre:</label>
-                            <input type="text" name="name" class="form-control" id="name<?php echo $torneo->getId(); ?>" value="<?php echo $torneo->getName() ?>">
+                            <label for="nombre<?php echo $torneo->getId(); ?>" class="form-label">Nombre:</label>
+                            <input type="text" name="nombre" class="form-control" id="nombre<?php echo $torneo->getId(); ?>" value="<?php echo $torneo->getNombre() ?>">
                           </div>
                           <input type="hidden" name="id" value="<?php echo $torneo->getId(); ?>">
                       </div>

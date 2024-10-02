@@ -4,16 +4,16 @@ class TorneoEntity
 {
 
 private $id;
-private $name;
+private $nombre;
 
 public function getId()
 {
     return $this->id;
 }
 
-public function getName()
+public function getNombre()
 {
-    return $this->name;
+    return $this->nombre;
 }
 
 public function setId($value)
@@ -21,9 +21,9 @@ public function setId($value)
     $this->id = $value;
 }
 
-public function setName($value)
+public function setNombre($value)
 {
-    $this->name = $value;
+    $this->nombre = $value;
 }
 
 }
