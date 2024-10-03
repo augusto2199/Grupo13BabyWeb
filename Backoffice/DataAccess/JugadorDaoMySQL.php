@@ -17,15 +17,26 @@ class JugadorDaoMySQL extends Dao
      * @return JugadorEntity[]
      */
     
-     public function all(): array
-     {
-         $stmt = $this->pdo->prepare('SELECT id, nombre, apellido, edad, posicion, numero_camiseta AS numeroCamiseta, equipo_id as equipo FROM jugador');
-         $stmt->setFetchMode(PDO::FETCH_CLASS, JugadorEntity::class);
+     // JugadorDaoMySQL.php
 
-         $stmt->execute();
+public function all() {
+    $stmt = $this->pdo->prepare("
+    SELECT jugador.id, jugador.nombre, jugador.apellido, jugador.edad, jugador.posicion, jugador.numero_camiseta, equipo.nombre AS equipo_nombre
+    FROM jugador
+    JOIN equipo ON jugador.equipo_id = equipo.id
+");
+
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_CLASS, 'JugadorEntity');
+}
+
+public function getEquipos() {
+    $equipoDao = new EquipoDaoMySql(); // Asegúrate de tener la implementación correcta para obtener equipos
+    return $equipoDao->all(); // Supongamos que este método devuelve todos los equipos
+}
+
+
      
-         return $stmt->fetchAll();
-     }
      
 }
 

@@ -8,8 +8,9 @@ private $nombre;
 private $apellido;
 private $edad;
 private $posicion;
-private $numeroCamiseta;
-private $equipo;
+private $numero_camiseta;  
+private $equipo_nombre; 
+
 
 public function getId()
 {
@@ -35,17 +36,15 @@ public function getPosicion()
 {
     return $this->posicion;
 }
-
+    
 public function getNumeroCamiseta()
 {
-    return $this->numeroCamiseta;
+    return $this->numero_camiseta;
 }
 
-public function getEquipo()
-{
-    return $this->numeroCamiseta;
+public function getEquipoNombre() {
+    return $this->equipo_nombre;
 }
-
 
 public function setId($value)
 {
@@ -72,16 +71,11 @@ public function setPosicion($value)
     $this->posicion = $value;
 }
 
+
 public function setNumeroCamiseta($value)
 {
-    $this->numeroCamiseta = $value;
+    $this->numero_camiseta = $value;
 }
-
-public function setEquipo($value)
-{
-    $this->numeroCamiseta = $value;
-}
-
 
 }
 
