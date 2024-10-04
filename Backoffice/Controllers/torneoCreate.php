@@ -2,9 +2,9 @@
 
 require __DIR__ . '/../../Config/conn.php';
 
-$stmt = $pdo->prepare('INSERT INTO torneo (name) VALUE (:name)');
+$stmt = $pdo->prepare('INSERT INTO torneos (nombre) VALUE (:nombre)');
 $stmt->execute([
-    ':name' => $_POST['name'],
+    ':nombre' => $_POST['nombreTorneo'],
 ]);
 
 header('location: /../../Backoffice/indexAdmin.php');

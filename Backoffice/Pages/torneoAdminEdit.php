@@ -1,10 +1,10 @@
 <?php
 
 require __DIR__ . '/../../Backoffice/Entity/TorneoEntity.php';
-require __DIR__ . '/..//../Backoffice/DataAccess/Dao.php';
-require __DIR__ . '/..//../Backoffice/DataAccess/TorneoDaoMySql.php';
-require __DIR__ . '/..//../Backoffice/Business/Business.php';
-require __DIR__ . '/..//../Backoffice/Business/TorneoBusiness.php';
+require __DIR__ . '/../../Backoffice/DataAccess/Dao.php';
+require __DIR__ . '/../../Backoffice/DataAccess/TorneoDaoMySql.php';
+require __DIR__ . '/../../Backoffice/Business/Business.php';
+require __DIR__ . '/../../Backoffice/Business/TorneoBusiness.php';
 
 $torneoBusiness = new TorneoBusiness;
 $torneo = $torneoBusiness->find($_GET['id']);
@@ -16,7 +16,7 @@ $torneo = $torneoBusiness->find($_GET['id']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torneo: <?php echo $torneo->getName()?></title>
+    <title>Torneo: <?php echo $torneo->getNombre()?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/Backoffice/Css/indexAdmin.css">
 </head>
@@ -29,8 +29,8 @@ $torneo = $torneoBusiness->find($_GET['id']);
     <div>
         <form action="/../../Backoffice/Controllers/torneoEdit.php" class="container" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="name" class="form-label">Nombre:</label>
-                <input type="text" name="name" class="form-control" id="name" placeHolder="" value="<?php echo $torneo->getName()?>">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" name="nombre" class="form-control" id="nombre" placeHolder="" value="<?php echo $torneo->getNombre()?>">
             </div>
             <input type="hidden" name="id" value="<?php echo $torneo->getId(); ?>">
             <div class="modal-footer">
