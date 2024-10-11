@@ -19,11 +19,17 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-usuarios-tab" data-bs-toggle="tab" data-bs-target="#nav-usuarios" type="button" role="tab" aria-controls="nav-usuarios" aria-selected="true">Usuarios</button>
             <button class="nav-link" id="nav-torneos-tab" data-bs-toggle="tab" data-bs-target="#nav-torneos" type="button" role="tab" aria-controls="nav-torneos" aria-selected="false">Torneos</button>
+            <button class="nav-link" id="nav-equipos-tab" data-bs-toggle="tab" data-bs-target="#nav-equipos" type="button" role="tab" aria-controls="nav-equipos" aria-selected="false">Equipos</button>
+            <button class="nav-link" id="nav-estadios-tab" data-bs-toggle="tab" data-bs-target="#nav-estadios" type="button" role="tab" aria-controls="nav-estadios" aria-selected="false">Estadios</button>
+            <button class="nav-link" id="nav-partidos-tab" data-bs-toggle="tab" data-bs-target="#nav-partidos" type="button" role="tab" aria-controls="nav-partidos" aria-selected="false">Partidos</button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-usuarios" role="tabpanel" aria-labelledby="nav-usuarios-tab"><?php include_once __DIR__ . '/Partials/adminUsuarios.php'?></div>
+        <div class="tab-pane fade show active" id="nav-usuarios" role="tabpanel" aria-labelledby="nav-usuarios-tab"><?php //include_once __DIR__ . '/Partials/adminUsuarios.php'?></div>
         <div class="tab-pane fade" id="nav-torneos" role="tabpanel" aria-labelledby="nav-torneos-tab"><?php //include_once __DIR__ . '/Partials/adminTorneos.php'?></div>
+        <div class="tab-pane fade" id="nav-equipos" role="tabpanel" aria-labelledby="nav-equipos-tab"><?php //include_once __DIR__ . '/Partials/adminEquipos.php'?></div>
+        <div class="tab-pane fade" id="nav-estadios" role="tabpanel" aria-labelledby="nav-estadios-tab"><?php //include_once __DIR__ . '/Partials/adminEstadios.php'?></div>
+        <div class="tab-pane fade" id="nav-partidos" role="tabpanel" aria-labelledby="nav-partidos-tab"><?php //include_once __DIR__ . '/Partials/adminPartidos.php'?></div>
     </div>
 </div>
 

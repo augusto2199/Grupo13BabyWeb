@@ -24,5 +24,15 @@ class UsuarioDaoMySQL extends Dao
 
         return $stmt->fetchAll();
     }
+
+    public function findArbitro($id): ?UsuarioArbitroEntity
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM arbitros WHERE id = :id');
+        $stmt->setFetchMode(PDO::FETCH_CLASS, UsuarioArbitroEntity::class);
+
+        $stmt->execute([':id' => $id]);
+
+        return $stmt->fetch();
+    }
 }
 ?>

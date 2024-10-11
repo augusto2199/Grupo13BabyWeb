@@ -14,15 +14,23 @@
 </div>
 
 <div class="container home">
-<form action="/../../Backoffice/Controllers/torneoCreate.php" method="POST" enctype="multipart/form-data">
+<form action="/../../Backoffice/Controllers/estadioCreate.php" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="nombreTorneo" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nombreTorneo" name="nombreTorneo" placeHolder="" value="">
+                            <label for="nombreEstadio" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nombreEstadio" name="nombreEstadio" placeHolder="" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="capacidadEstadio" class="form-label">Capacidad:</label>
+                            <input type="text" class="form-control" id="capacidadEstadio" name="capacidadEstadio" placeHolder="" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="ubicacionEstadio" class="form-label">Ubicacion:</label>
+                            <input type="text" class="form-control" id="ubicacionEstadio" name="ubicacionEstadio" placeHolder="" value="">
                         </div>
                     </div>
                         <div>
                         <a href="/../Backoffice/Pages/indexAdmin.php"><button type="button" class="btn btn-danger">Cerrar</button></a>
-                            <button type="submit" class="btn btn-success btn-create">Crear torneo</button>
+                            <button type="submit" class="btn btn-success btn-create">Crear Equipo</button>
                         </div>
                     </form>
 </div>

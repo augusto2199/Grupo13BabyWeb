@@ -10,6 +10,8 @@ private $email;
 private $password;
 private $edad;
 private $roles_id;
+private $arbitro_id;
+
 
       /**
      * @return RolEntity[]
@@ -89,6 +91,11 @@ public function getRol()
 public function setRol($value)
 {
     $this->roles_id = $value;
+}
+
+public function getArbitroId()
+{
+    return $this->arbitro_id;
 }
 
 }
