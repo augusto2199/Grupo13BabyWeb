@@ -1,15 +1,3 @@
-<?php
-
-require __DIR__ . '/../Backoffice/Entity/TorneoEntity.php';
-require __DIR__ . '/../Backoffice/DataAccess/Dao.php';
-require __DIR__ . '/../Backoffice/DataAccess/TorneoDaoMySql.php';
-require __DIR__ . '/../Backoffice/Business/Business.php';
-require __DIR__ . '/../Backoffice/Business/TorneoBusiness.php';
-
-$torneoBusiness = new TorneoBusiness;
-$torneos = $torneoBusiness->all();
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +6,7 @@ $torneos = $torneoBusiness->all();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baby Futbol</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="/Backoffice/Css/indexAdmin.css">
+    <link rel="stylesheet" href="/../../Backoffice/Css/indexAdmin.css">
 </head>
 <body>
 
@@ -27,57 +15,23 @@ $torneos = $torneoBusiness->all();
 </div>
 
 <div class="container home">
-        <div>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCreate">Agregar</button>
-            <div class="modal fade modal-lg" id="modalCreate" tabindex="-1" aria-labelledby="modalCreateLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalCreateLabel">Crear Torneo</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/../../Backoffice/Controllers/torneoCreate.php" method="POST" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeHolder="" value="test">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-create" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-success btn-create">Crear torneo</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-usuarios-tab" data-bs-toggle="tab" data-bs-target="#nav-usuarios" type="button" role="tab" aria-controls="nav-usuarios" aria-selected="true">Usuarios</button>
+            <button class="nav-link" id="nav-torneos-tab" data-bs-toggle="tab" data-bs-target="#nav-torneos" type="button" role="tab" aria-controls="nav-torneos" aria-selected="false">Torneos</button>
+            <button class="nav-link" id="nav-equipos-tab" data-bs-toggle="tab" data-bs-target="#nav-equipos" type="button" role="tab" aria-controls="nav-equipos" aria-selected="false">Equipos</button>
+            <button class="nav-link" id="nav-estadios-tab" data-bs-toggle="tab" data-bs-target="#nav-estadios" type="button" role="tab" aria-controls="nav-estadios" aria-selected="false">Estadios</button>
+            <button class="nav-link" id="nav-partidos-tab" data-bs-toggle="tab" data-bs-target="#nav-partidos" type="button" role="tab" aria-controls="nav-partidos" aria-selected="false">Partidos</button>
         </div>
-        <div class="col-md-12">
-            <table class="table table-striped table-border">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($torneos as $torneo): ?>
-                        <tr>
-                            <th>
-                            <a href="/../Pages/torneo.php?id=<?php echo $torneo->getId(); ?>"><?php echo $torneo->getName() ?></a>
-                            </th>
-                            <th>
-                                <a href="/../Backoffice/Pages/torneoAdmin.php?id=<?php echo $torneo->getId(); ?>"><button type="button" class="btn btn-primary">Editar</button></a>
-                                <form action="/../../Backoffice/Controllers/torneoDelete.php" method="POST">
-                                    <input type="hidden" name="id" value="<?php echo $torneo->getId() ?>">
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </th>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-usuarios" role="tabpanel" aria-labelledby="nav-usuarios-tab"><?php //include_once __DIR__ . '/Partials/adminUsuarios.php'?></div>
+        <div class="tab-pane fade" id="nav-torneos" role="tabpanel" aria-labelledby="nav-torneos-tab"><?php //include_once __DIR__ . '/Partials/adminTorneos.php'?></div>
+        <div class="tab-pane fade" id="nav-equipos" role="tabpanel" aria-labelledby="nav-equipos-tab"><?php //include_once __DIR__ . '/Partials/adminEquipos.php'?></div>
+        <div class="tab-pane fade" id="nav-estadios" role="tabpanel" aria-labelledby="nav-estadios-tab"><?php //include_once __DIR__ . '/Partials/adminEstadios.php'?></div>
+        <div class="tab-pane fade" id="nav-partidos" role="tabpanel" aria-labelledby="nav-partidos-tab"><?php //include_once __DIR__ . '/Partials/adminPartidos.php'?></div>
     </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

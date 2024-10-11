@@ -9,3 +9,10 @@
 .header {
     margin-bottom: 10px;
 }
+
+.botonesAdmin {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
