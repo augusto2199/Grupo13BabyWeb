@@ -1,9 +1,9 @@
-<!-- Nav-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav" style="opacity: 0.6;">
-    <div class="container px-4">
-        <a class="navbar-brand" href="#page-top">
-            <img src="./img/Argentina.png" alt="Logo"
-                style="height: 40px; width: auto; opacity: 8; margin-right: 10px;">
+<!-- Nav -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="mainNav" style="height: 56px;">
+    <div class="container px-4" style="display: flex; align-items: center;">
+        
+        <a class="navbar-brand" href="#page-top" style="display: flex; align-items: center;">
+            <img src="./img/Argentina.png" alt="Logo" style="height: 55px; width: auto; margin-right: 10px;">
             LIGA ARGENTINA BABY FUTBOL
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
@@ -11,36 +11,36 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <a class="nav-link" href="#noticias" style="color: #ffffff; font-weight: bold;">Noticias</a>
-                <!-- Equipos -->
+            <ul class="navbar-nav ms-auto" style="gap: 20px;"> 
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="torneosDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff; font-weight: bold;">
+                        Torneos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="torneosDropdown">
+                        <li><a class="dropdown-item" href="Partials/torneoVerano.php" style="color: #333333;">Torneo Verano</a></li>
+                        <li><a class="dropdown-item" href="#torneoB" style="color: #333333;">Torneo Anual</a></li>
+                        <li><a class="dropdown-item" href="#torneoC" style="color: #333333;">Copa Challenger</a></li>
+                        <li><a class="dropdown-item" href="#torneoC" style="color: #333333;">Copa de Campeones</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#noticias" style="color: #ffffff; font-weight: bold;">Noticias</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="equiposDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff; font-weight: bold;">
                         Equipos
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="equiposDropdown">
-                        <li><a class="dropdown-item" href="#zonaA" style="color: #333333;"
-                                onmouseover="this.style.color='#ffffff'; this.style.backgroundColor='#007bff';"
-                                onmouseout="this.style.color='#333333'; this.style.backgroundColor='';">ZONA A</a></li>
-                        <li><a class="dropdown-item" href="#zonaB" style="color: #333333;"
-                                onmouseover="this.style.color='#ffffff'; this.style.backgroundColor='#007bff';"
-                                onmouseout="this.style.color='#333333'; this.style.backgroundColor='';">ZONA B</a></li>
-                        <li><a class="dropdown-item" href="#zonaC" style="color: #333333;"
-                                onmouseover="this.style.color='#ffffff'; this.style.backgroundColor='#007bff';"
-                                onmouseout="this.style.color='#333333'; this.style.backgroundColor='';">ZONA C</a></li>
-                        <li><a class="dropdown-item" href="#zonaD" style="color: #333333;"
-                                onmouseover="this.style.color='#ffffff'; this.style.backgroundColor='#007bff';"
-                                onmouseout="this.style.color='#333333'; this.style.backgroundColor='';">ZONA D</a></li>
-                        <li><a class="dropdown-item" href="#zonaE" style="color: #333333;"
-                                onmouseover="this.style.color='#ffffff'; this.style.backgroundColor='#007bff';"
-                                onmouseout="this.style.color='#333333'; this.style.backgroundColor='';">ZONA E</a></li>
-                        <li><a class="dropdown-item" href="#zonaF" style="color: #333333;"
-                                onmouseover="this.style.color='#ffffff'; this.style.backgroundColor='#007bff';"
-                                onmouseout="this.style.color='#333333'; this.style.backgroundColor='';">ZONA F</a></li>
+                        <li><a class="dropdown-item" href="#zonaA">ZONA A</a></li>
+                        <li><a class="dropdown-item" href="#zonaB">ZONA B</a></li>
+                        <li><a class="dropdown-item" href="#zonaC">ZONA C</a></li>
+                        <li><a class="dropdown-item" href="#zonaD">ZONA D</a></li>
+                        <li><a class="dropdown-item" href="#zonaE">ZONA E</a></li>
+                        <li><a class="dropdown-item" href="#zonaF">ZONA F</a></li>
                     </ul>
                 </li>
-                <a class="nav-link" href="#torneos" style="color: #ffffff; font-weight: bold;">Torneos</a>
                 <li class="nav-item">
                     <a class="nav-link btn btn-primary text-white btn-custom" href="#" data-bs-toggle="modal"
                         data-bs-target="#ContactoModal">
@@ -50,8 +50,7 @@
                 <li class="nav-item">
                     <a class="nav-link btn btn-primary text-white btn-custom" href="#" data-bs-toggle="modal"
                         data-bs-target="#loginModal">
-                        <img src="./img/contrasena.png" alt="Logo"
-                            style="height: 20px; width: auto; margin-right: 8px;">Iniciar Sesión
+                        <img src="./img/contrasena.png" alt="Logo" style="height: 20px; width: auto; margin-right: 8px;">Iniciar Sesión
                     </a>
                 </li>
             </ul>
@@ -59,13 +58,34 @@
     </div>
 </nav>
 
+<!-- Estilos adicionales -->
+<style>
+    .navbar-nav .nav-link, .dropdown-menu .dropdown-item {
+        color: #ffffff !important; /* Letras blancas para todo el navbar */
+        font-weight: bold;
+        transition: color 0.3s, background-color 0.3s;
+    }
+
+    /* Efecto al pasar por encima */
+    .navbar-nav .nav-link:hover, .dropdown-menu .dropdown-item:hover {
+        color: #ffffff !important;
+        background-color: #007bff !important; /* Mismo color de hover para todos */
+    }
+
+    /* Color de los elementos dentro del dropdown (por defecto) */
+    .dropdown-menu .dropdown-item {
+        color: #333333 !important;
+    }
+</style>
+
+
 <!-- Modal Login-->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <img src="./img/argentina.png" alt="Logo"
-                    style="height: 40px; width: auto; opacity: 8; margin-right: 10px;">
+                    style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title text-center w-100" id="loginModalLabel">Iniciar Sesión</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -98,7 +118,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="./img/argentina.png" alt="Logo" style="height: 40px; width: auto; opacity: 8; margin-right: 10px;">
+                <img src="./img/argentina.png" alt="Logo" style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title text-center w-100" id="ModalContasenia">Restablecer Contraseña</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -126,7 +146,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <img src="./img/argentina.png" alt="Logo"
-                    style="height: 40px; width: auto; opacity: 8; margin-right: 10px;">
+                    style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title text-center w-100" id="registroModalLabel">Registro</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -174,7 +194,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <img src="./img/argentina.png" alt="Logo"
-                    style="height: 40px; width: auto; opacity: 8; margin-right: 10px;">
+                    style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title" id="terminosModalLabel">Términos y Condiciones</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -269,7 +289,7 @@
         <div class="modal-content" style="height: 90vh;"> <!-- Altura del modal un poco menor que el viewport -->
             <div class="modal-header">
                 <img src="./img/argentina.png" alt="Logo"
-                    style="height: 40px; width: auto; opacity: 8; margin-right: 10px;">
+                    style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title text-center w-100" id="ContactoModalLabel">Contacto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -314,9 +334,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
+          
         </div>
     </div>
 </div>
