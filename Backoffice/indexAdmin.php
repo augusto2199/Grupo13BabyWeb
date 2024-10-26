@@ -10,9 +10,7 @@
 </head>
 <body>
 
-<div class="header">
-    <?php include_once __DIR__ . './Partials/navbar.php'?>
-</div>
+
 
 <div class="container home">
     <nav>
