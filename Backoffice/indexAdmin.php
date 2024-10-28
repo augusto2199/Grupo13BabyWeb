@@ -23,11 +23,11 @@
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-usuarios" role="tabpanel" aria-labelledby="nav-usuarios-tab"><?php //include_once __DIR__ . '/Partials/adminUsuarios.php'?></div>
+        <div class="tab-pane fade show active" id="nav-usuarios" role="tabpanel" aria-labelledby="nav-usuarios-tab"><?php include_once __DIR__ . '/Partials/adminUsuarios.php'?></div>
         <div class="tab-pane fade" id="nav-torneos" role="tabpanel" aria-labelledby="nav-torneos-tab"><?php //include_once __DIR__ . '/Partials/adminTorneos.php'?></div>
         <div class="tab-pane fade" id="nav-equipos" role="tabpanel" aria-labelledby="nav-equipos-tab"><?php //include_once __DIR__ . '/Partials/adminEquipos.php'?></div>
         <div class="tab-pane fade" id="nav-estadios" role="tabpanel" aria-labelledby="nav-estadios-tab"><?php //include_once __DIR__ . '/Partials/adminEstadios.php'?></div>
-        <div class="tab-pane fade" id="nav-partidos" role="tabpanel" aria-labelledby="nav-partidos-tab"><?php include_once __DIR__ . '/Partials/adminPartidos.php'?></div>
+        <div class="tab-pane fade" id="nav-partidos" role="tabpanel" aria-labelledby="nav-partidos-tab"><?php //include_once __DIR__ . '/Partials/adminPartidos.php'?></div>
     </div>
 </div>
 
