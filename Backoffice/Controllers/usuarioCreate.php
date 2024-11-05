@@ -69,7 +69,6 @@ switch ($_POST['roles_idUsuario']) {
         break;
 }
 
-
-
 header('location: /Grupo13BabyWeb/Backoffice/indexAdmin.php');
+
 ?>

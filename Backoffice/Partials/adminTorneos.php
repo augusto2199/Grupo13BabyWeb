@@ -11,34 +11,45 @@ $torneos = $torneoBusiness->all();
 
 ?>
 
-<div>
-<a href="/Grupo13BabyWeb/Backoffice/Pages/torneoAdminCreate.php?>"><button type="button" class="btn btn-success">Agregar</button></a>
+<style>
+    .degraded-background {
+        background: linear-gradient(to bottom right, #f0f8ff, #add8e6);
+        padding: 20px;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="degraded-background">
+    <h1 class="text-center mb-4">Gestión de Torneos</h1>
+    <a href="/Grupo13BabyWeb/Backoffice/Pages/torneoAdminCreate.php" class="btn btn-success mb-3">Agregar Torneo</a>
     <div class="col-md-12">
-        <table class="table table-striped table-border">
-            <thead>
+        <table class="table table-striped table-hover">
+            <thead class="table-light">
                 <tr>
                     <th>Nombre</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($torneos as $torneo): ?>
+                <?php foreach ($torneos as $torneo): ?>
                     <tr>
-                        <th>
-                        <a href="/../Pages/torneo.php?id=<?php echo $torneo->getId(); ?>"><?php echo $torneo->getNombre() ?></a>
-                        </th>
-                        <th>
-                            <div class="botnesAdmin">
-                            <a href="/Grupo13BabyWeb/Backoffice/Pages/torneoAdminEdit.php?id=<?php echo $torneo->getId(); ?>"><button type="button botnesAdmin" class="btn btn-primary">Editar</button></a>
-                            <form action="/Grupo13BabyWeb/Backoffice/Controllers/torneoDelete.php" method="POST">
-                                <input type="hidden" name="id" value="<?php echo $torneo->getId() ?>">
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
+                        <td>
+                            <a href="/../Pages/torneo.php?id=<?php echo $torneo->getId(); ?>" class="text-dark text-decoration-none">
+                                <?php echo $torneo->getNombre(); ?>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href="/Grupo13BabyWeb/Backoffice/Pages/torneoAdminEdit.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-warning btn-sm">Editar</a>
+                                <form action="/Grupo13BabyWeb/Backoffice/Controllers/torneoDelete.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="id" value="<?php echo $torneo->getId(); ?>">
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
                             </div>
-                        </th>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
-
