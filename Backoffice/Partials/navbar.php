@@ -58,25 +58,6 @@
     </div>
 </nav>
 
-<!-- Estilos adicionales -->
-<style>
-    .navbar-nav .nav-link, .dropdown-menu .dropdown-item {
-        color: #ffffff !important; /* Letras blancas para todo el navbar */
-        font-weight: bold;
-        transition: color 0.3s, background-color 0.3s;
-    }
-
-    /* Efecto al pasar por encima */
-    .navbar-nav .nav-link:hover, .dropdown-menu .dropdown-item:hover {
-        color: #ffffff !important;
-        background-color: #007bff !important; /* Mismo color de hover para todos */
-    }
-
-    /* Color de los elementos dentro del dropdown (por defecto) */
-    .dropdown-menu .dropdown-item {
-        color: #333333 !important;
-    }
-</style>
 
 
 <!-- Modal Login-->
@@ -145,48 +126,71 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="./img/argentina.png" alt="Logo"
-                    style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
+                <img src="./img/argentina.png" alt="Logo" style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title text-center w-100" id="registroModalLabel">Registro</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post" action="/../Backoffice/Partials/registro.php">
                     <div class="mb-3">
-                        <label for="fullName" class="form-label">Nombre Completo</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Introduce tu nombre completo"
-                            required>
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce tu nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduce tu apellido" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Introduce tu correo" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Introduce tu correo" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" placeholder="Introduce tu contraseña"
-                            required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Introduce tu contraseña" required>
                     </div>
                     <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-                        <input type="password" class="form-control" id="confirmPassword"
-                            placeholder="Confirma tu contraseña" required>
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="edad" name="edad" placeholder="Introduce tu edad" required>
                     </div>
+                    <input type="hidden" name="roles_idUsuario" value="2"> <!-- Suponiendo que 2 es un rol válido -->
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="terms" required>
                         <label class="form-check-label" for="terms">
-                            Acepto los <a href="#terminos" data-bs-toggle="modal"
-                                data-bs-target="#terminosModal">Términos y Condiciones</a>
+                            Acepto los <a href="#terminos" data-bs-toggle="modal" data-bs-target="#terminosModal">Términos y Condiciones</a>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Registrar</button>
                 </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Volver</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Volver</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<script>
+    document.getElementById('registroForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Evita el envío del formulario
+        const formData = new FormData(this);
+
+        fetch('registro.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Muestra el mensaje de respuesta
+            if (data.includes("Registro exitoso")) {
+                $('#registroModal').modal('hide'); // Cierra el modal
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+
 
 <!-- Modal Términos y Condiciones -->
 <div class="modal fade" id="terminosModal" tabindex="-1" aria-labelledby="terminosModalLabel" aria-hidden="true">
