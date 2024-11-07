@@ -1,3 +1,40 @@
+<style>
+
+body {
+    background-image: url('../img/pelotas.jpg');
+    background-size: cover;  
+    background-position: center center;  
+    background-attachment: fixed;  
+    background-repeat: no-repeat;  
+}
+
+.degraded-background {
+    background: linear-gradient(to bottom right, rgba(240, 248, 255, 0.8), rgba(173, 216, 230, 0.8));
+    padding: 20px;
+    border-radius: 10px;
+    background-blur: 5px;  
+}
+
+
+.degraded-background {
+    background: linear-gradient(to bottom right, #f0f8ff, #add8e6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+table td.password-cell {
+    max-width: 150px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
+
+
+
+
+</style>
+
 <?php
 
 require __DIR__ . '/../Entity/UsuarioEntity.php';
@@ -29,7 +66,11 @@ $equipos = $equiposBusiness->all();
 </style>
 
 <div class="degraded-background">
-    <h1 class="text-center mb-4">Liga Argentina de Baby Fútbol</h1>
+    <div class="text-center mb-4">
+        <img src="../img/Argentina.png" alt="Logo Argentina" style="width: 100px; height: auto; vertical-align: middle;">
+        <h1 style="display: inline; vertical-align: middle; margin-left: 10px;">Liga Argentina de Baby Fútbol</h1>
+    </div>
+
     <a href="/Grupo13BabyWeb/Backoffice/Pages/usuarioAdminCreate.php" class="btn btn-success mb-3">Agregar Usuario</a>
     <div class="col-md-12">
         <table class="table table-striped table-hover">
@@ -56,7 +97,7 @@ $equipos = $equiposBusiness->all();
                                 </a>
                             </td>
                             <td><?php echo $usuario->getEmail(); ?></td>
-                            <td><?php echo $usuario->getPassword(); ?></td>
+                            <td class="password-cell"><?php echo $usuario->getPassword(); ?></td>
                             <td><?php echo $usuario->getEdad(); ?></td>
                             <td><?php echo $usuario->buscarNombreRol($usuario->getRol()); ?></td>
                             <td>
@@ -64,7 +105,8 @@ $equipos = $equiposBusiness->all();
                                     <a href="/Grupo13BabyWeb/Backoffice/Pages/usuarioAdminEdit.php?id=<?php echo $usuario->getId(); ?>"
                                         class="btn btn-warning btn-sm">Editar</a>
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#confirmEliminarModal" onclick="setUserId(<?php echo $usuario->getId(); ?>)">
+                                        data-bs-target="#confirmEliminarModal"
+                                        onclick="setUserId(<?php echo $usuario->getId(); ?>)">
                                         Eliminar
                                     </button>
                                 </div>
@@ -104,8 +146,8 @@ $equipos = $equiposBusiness->all();
 </div>
 
 <script>
-// Función para establecer el ID del usuario en el campo oculto del formulario
-function setUserId(id) {
-    document.getElementById('idUsuario').value = id;
-}
+    // Función para establecer el ID del usuario en el campo oculto del formulario
+    function setUserId(id) {
+        document.getElementById('idUsuario').value = id;
+    }
 </script>

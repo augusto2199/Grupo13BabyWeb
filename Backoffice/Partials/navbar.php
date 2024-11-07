@@ -1,4 +1,26 @@
 <!-- Nav -->
+
+<style>
+    .navbar-nav .nav-link,
+    .dropdown-menu .dropdown-item {
+        color: #ffffff !important;
+        font-weight: bold;
+        transition: color 0.3s, background-color 0.3s;
+        padding: 5px 10px;
+
+    }
+
+    .navbar-nav .nav-link:hover,
+    .dropdown-menu .dropdown-item:hover {
+        color: #ffffff !important;
+        background-color: #007bff !important;
+
+    }
+
+    .dropdown-menu .dropdown-item {
+        color: #333333 !important;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="mainNav" style="height: 56px;">
     <div class="container px-4" style="display: flex; align-items: center;">
         
@@ -58,37 +80,67 @@
     </div>
 </nav>
 
+<style>
+    .alert-success {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+        display: none;
+    }
+</style>
 
+    <div class="alert alert-success" id="registroExitoso" role="alert">
+        ¡Registro exitoso!
+    </div>
 
-<!-- Modal Login-->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <!-- Modal Login -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="./img/argentina.png" alt="Logo"
-                    style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
+                <!-- Logo de Argentina -->
+                <img src="./img/argentina.png" alt="Logo" style="height: 65px; width: auto; opacity: 0.8; margin-right: 10px;">
                 <h5 class="modal-title text-center w-100" id="loginModalLabel">Iniciar Sesión</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <!-- Mostrar mensaje de error si existe -->
+                <?php if (isset($_SESSION['login_error'])): ?>
+                    <div class="alert alert-danger">
+                        <?php 
+                            echo $_SESSION['login_error']; 
+                            unset($_SESSION['login_error']);  // Eliminar el mensaje de error después de mostrarlo
+                        ?>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Formulario de login -->
+                <form method="POST" action="Backoffice/Partials/login.php">
+                    <!-- Campo de correo electrónico -->
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Introduce tu correo">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Introduce tu correo" required>
                     </div>
+                    <!-- Campo de contraseña -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" placeholder="Introduce tu contraseña">
-                        <a href="#" class="d-block text-end mt-2" data-bs-toggle="modal" data-bs-target="#ModalContasenia">Olvidé mi contraseña</a>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Introduce tu contraseña" required>
+                        <a href="#" class="d-block text-end mt-2" data-bs-toggle="modal"
+                                data-bs-target="#ModalContasenia">Olvidé mi contraseña</a>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-                    <p class="text-center mt-3">¿No tienes cuenta? ¡Regístrate ahora!</p>
+                    <!-- Botón para iniciar sesión -->
+                    <button type="submit" class="btn btn-primary w-100 btn-sm">Iniciar Sesión</button>
                 </form>
-                <button type="submit" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
-                    data-bs-target="#registroModal">Crea tu Cuenta en LABF</button>
+
+                <!-- Enlace para registro de usuario -->
+                <p class="text-center mt-3">¿No tienes cuenta? ¡Regístrate ahora!</p>
+                <button type="button" class="btn btn-outline-primary w-100 btn-sm" data-bs-toggle="modal" data-bs-target="#registroModal">
+                    Crea tu Cuenta en LABF
+                </button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -101,7 +153,7 @@
             <div class="modal-header">
                 <img src="./img/argentina.png" alt="Logo" style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title text-center w-100" id="ModalContasenia">Restablecer Contraseña</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -110,64 +162,141 @@
                         <label for="resetEmail" class="form-label">Correo Electrónico</label>
                         <input type="email" class="form-control" id="resetEmail" placeholder="Introduce tu correo">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Enviar Enlace de Restablecimiento</button>
+                    <button type="submit" class="btn btn-primary w-100 btn-sm">Enviar Enlace de Restablecimiento</button>
                 </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Volver</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Volver</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<!-- Modal Registro -->
-<div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <img src="./img/argentina.png" alt="Logo" style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
-                <h5 class="modal-title text-center w-100" id="registroModalLabel">Registro</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/../Backoffice/Partials/registro.php">
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce tu nombre" required>
+ <!-- Modal Registro -->
+ <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="./img/argentina.png" alt="Logo"
+                            style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
+                        <h5 class="modal-title text-center w-100" id="registroModalLabel">Registro</h5>
+                        <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduce tu apellido" required>
+                    <div class="modal-body">
+                        <form id="registroForm">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombreUsuario"
+                                    placeholder="Introduce tu nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" name="apellidoUsuario"
+                                    placeholder="Introduce tu apellido" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" name="emailUsuario"
+                                    placeholder="Introduce tu correo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="passwordUsuario" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="passwordUsuario" name="passwordUsuario"
+                                    placeholder="Introduce tu contraseña" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edad" class="form-label">Edad</label>
+                                <input type="number" class="form-control" id="edad" name="edadUsuario"
+                                    placeholder="Introduce tu edad" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="terms" required>
+                                <label class="form-check-label" for="terms">
+                                    Acepto los <a href="#terminos" data-bs-toggle="modal"
+                                        data-bs-target="#terminosModal">Términos y Condiciones</a>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 btn-sm">Registrar</button>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Introduce tu correo" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" data-bs-toggle="modal"
+                            data-bs-target="#loginModal">Volver</button>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Introduce tu contraseña" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edad" class="form-label">Edad</label>
-                        <input type="number" class="form-control" id="edad" name="edad" placeholder="Introduce tu edad" required>
-                    </div>
-                    <input type="hidden" name="roles_idUsuario" value="2"> <!-- Suponiendo que 2 es un rol válido -->
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="terms" required>
-                        <label class="form-check-label" for="terms">
-                            Acepto los <a href="#terminos" data-bs-toggle="modal" data-bs-target="#terminosModal">Términos y Condiciones</a>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Registrar</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Volver</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+
+          <!-- Modal Confirmación -->
+          <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content"
+                    style="background-color: #d9d9d9; border-radius: 8px; border: 4px solid #28a745; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);">
+                    <div class="modal-header" style="background-color: #28a745; color: white;">
+                        <h5 class="modal-title" id="confirmacionModalLabel">Registro Exitoso</h5>
+                        <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"
+                            style="opacity: 0.8;"></button>
+                    </div>
+                    <div class="modal-body text-center" style="color: black;">
+                        <p>Tu registro se ha completado exitosamente. Ahora puedes iniciar sesión.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript para redirigir al hacer clic en "Aceptar" -->
+        <script>
+            document.getElementById('aceptarRegistro').addEventListener('click', function () {
+                // Redireccionar a la página de inicio
+                window.location.href = '/Grupo13BabyWeb/index.php';
+            });
+        </script>
+
+        <!-- JavaScript para manejar el envío del formulario  -->
+        <script>
+            document.getElementById('registroForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Evita el envío tradicional del formulario
+
+                // Crear el objeto FormData con los datos del formulario
+                const formData = new FormData(this);
+
+                // Enviar el formulario con AJAX
+                fetch('/Grupo13BabyWeb/Backoffice/Partials/registro.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        if (data.trim() === 'success') { // Respuesta esperada del servidor en caso de éxito
+                            // Ocultar el modal de registro y mostrar el modal de confirmación
+                            var registroModal = new bootstrap.Modal(document.getElementById('registroModal'));
+                            registroModal.hide();
+
+                            var confirmacionModal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+                            confirmacionModal.show();
+
+                            // Redirigir después de 3 segundos
+                            setTimeout(function () {
+                                window.location.href = '/Grupo13BabyWeb/index.php';
+                            }, 3000);
+                        } else {
+                            alert("Error: " + data); // Muestra el error en caso de fallo
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+
+            // Redirigir al hacer clic en el botón "Aceptar" en el modal de confirmación
+            document.getElementById('aceptarRegistro').addEventListener('click', function () {
+                window.location.href = '/Grupo13BabyWeb/index.php';
+            });
+
+            </script>
+
 
 
 
@@ -200,7 +329,7 @@
                 <img src="./img/argentina.png" alt="Logo"
                     style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title" id="terminosModalLabel">Términos y Condiciones</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>
@@ -280,7 +409,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Volver</button>
             </div>
         </div>
     </div>
@@ -295,7 +424,7 @@
                 <img src="./img/argentina.png" alt="Logo"
                     style="height: 65px; width: auto; opacity: 8; margin-right: 10px;">
                 <h5 class="modal-title text-center w-100" id="ContactoModalLabel">Contacto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-0">
                 <div class="row g-0 h-100">
@@ -333,7 +462,7 @@
                                 <textarea class="form-control" id="message" rows="4"
                                     placeholder="Escribe tu mensaje aquí"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
+                            <button type="submit" class="btn btn-primary w-100 btn-sm">Enviar Mensaje</button>
                         </form>
                     </div>
                 </div>
