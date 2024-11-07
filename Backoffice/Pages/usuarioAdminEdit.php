@@ -27,7 +27,15 @@ $usuario = $usuarioBusiness->find($_GET['id']);
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/Backoffice/Css/indexAdmin.css">
     <style>
-        /* Estilo para el fondo degradado */
+
+        /* Fondo con imagen */
+        body {
+            background-image: url('../../../Grupo13BabyWeb/img/pelotas.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
         .degraded-background {
             background: linear-gradient(to bottom right, #f0f8ff, #add8e6);
             padding: 20px;
@@ -35,36 +43,34 @@ $usuario = $usuarioBusiness->find($_GET['id']);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Estilo para el título */
-        .page-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        /* Contenedor más estrecho */
+      
         .form-container {
             max-width: 600px;
-            /* Ajusta el ancho máximo según lo necesites */
             margin: 0 auto;
-            /* Centra el contenedor */
         }
+
+        .argentina-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            height: 50px;
+        }
+
+    .logo {
+        height: 100px; 
+        width: auto;
+    }
     </style>
 </head>
 
-<body>
-
-    <div class="header">
-
-    </div>
-
-    <div class="container">
-        <h1 class="text-center mb-4">Liga Argentina de Baby Fútbol</h1>
-        <h2 class="mt-4 mb-4">Editar Usuario: <?php echo $usuario->getNombre() ?></h2>
-        <div class="form-container">
-            <div class="degraded-background">
+<body>      
+<div class="container">
+    <div class="form-container">
+        <div class="degraded-background">
+            <div class="d-flex align-items-center mb-3">
+                <img src="../../../Grupo13BabyWeb/img/Argentina.png" alt="Logo Argentina" class="logo me-3">
+                <h2>Editar Usuario: <?php echo $usuario->getNombre() ?></h2>
+            </div>
                 <form action="/Grupo13BabyWeb/Backoffice/Controllers/usuarioEdit.php" method="POST"
                     enctype="multipart/form-data">
                     <div class="mb-3">
@@ -135,7 +141,6 @@ $usuario = $usuarioBusiness->find($_GET['id']);
                             data-bs-target="#confirmModal">Crear cambios</button>
                     </div>
 
-
                     <!-- Modal de Confirmación -->
                     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
                         aria-hidden="true">
@@ -152,24 +157,12 @@ $usuario = $usuarioBusiness->find($_GET['id']);
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary btn-sm"
                                         data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-success btn-sm" id="confirmButton">Confirmar</button>
+                                    <button type="button" class="btn btn-success btn-sm"
+                                        id="confirmButton">Confirmar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <script>
-                        document.getElementById('confirmButton').addEventListener('click', function () {
-                            // Envía el formulario cuando el usuario confirme
-                            document.querySelector('form').submit();
-                        });
-                    </script>
-
-
-
-
-
-
                 </form>
             </div>
         </div>
@@ -178,6 +171,12 @@ $usuario = $usuarioBusiness->find($_GET['id']);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("confirmButton").addEventListener("click", function () {
+            document.forms[0].submit();
+        });
+    </script>
+
 </body>
 
 </html>
