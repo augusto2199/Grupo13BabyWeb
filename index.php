@@ -40,7 +40,7 @@
     <div class="header">  
         
         
-    <?php include_once __DIR__ . '/Backoffice/Partials/nav.php'?>
+    <?php include_once __DIR__ . '/Backoffice/Partials/navbar.php'?>
 
     <?php include_once __DIR__ . '/Backoffice/Partials/torneos.php'?>
 
@@ -50,7 +50,7 @@
     
     <?php include_once __DIR__ . '/Backoffice/Partials/footer.php'?>
 
-    <?php include_once __DIR__ . '/Partial/navi.php'?>
+   
 
 
       
