@@ -23,9 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Verificar si la contraseña es correcta
             $passwordCheck = password_verify($password, $user['password']);
 
-            // Depurar: Muestra si la contraseña es correcta o no
-            var_dump($passwordCheck); // Esto es solo para depurar. Deberías eliminarlo en producción.
-
             if ($passwordCheck) {
                 // Si las credenciales son correctas, iniciar sesión y redirigir
                 $_SESSION['user_id'] = $user['id'];
@@ -49,33 +46,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Si la contraseña es incorrecta
                 $_SESSION['login_error'] = 'Correo o contraseña incorrectos';
 
-                // Destruir la sesión al fallar el login
-                session_unset();  // Limpiar las variables de sesión
-                session_destroy();  // Destruir la sesión completamente
-
-                header('Location: ');
+                // Redirigir a la página de error
+                header('Location: ../Partials/ERROR.php');
                 exit();
             }
         } else {
             // Si el correo no existe
             $_SESSION['login_error'] = 'Correo o contraseña incorrectos';
 
-            // Destruir la sesión al no encontrar el correo
-            session_unset();  // Limpiar las variables de sesión
-            session_destroy();  // Destruir la sesión completamente
-
-            header('Location: ');
+            // Redirigir a la página de error
+            header('Location: ../Partials/login.php');
             exit();
         }
     } catch (PDOException $e) {
         // En caso de error de conexión a la base de datos
         $_SESSION['login_error'] = 'Error al conectar con la base de datos: ' . $e->getMessage();
         
-        // Destruir la sesión en caso de error
-        session_unset();  // Limpiar las variables de sesión
-        session_destroy();  // Destruir la sesión completamente
-
-        header('Location: ');
+        // Redirigir a la página de error
+        header('Location: ../Partials/ERROR.php');
         exit();
     }
 }

@@ -2,8 +2,11 @@
 
 require __DIR__ . '/../../Config/conn.php';
 
+// Encriptar la contraseña antes de insertarla en la base de datos
+$passwordHash = password_hash($_POST['passwordUsuario'], PASSWORD_BCRYPT);
+
 switch ($_POST['roles_idUsuario']) {
-    case 12:
+    case 12: // Arbitro
         $stmt = $pdo->prepare('INSERT INTO arbitros (experiencia) VALUE (:experiencia)');
         $stmt->execute([
             ':experiencia' => $_POST['experienciaArbitro'],
@@ -14,13 +17,13 @@ switch ($_POST['roles_idUsuario']) {
             ':nombre' => $_POST['nombreUsuario'],
             ':apellido' => $_POST['apellidoUsuario'],
             ':email' => $_POST['emailUsuario'],
-            ':password' => $_POST['passwordUsuario'],
+            ':password' => $passwordHash, // Contraseña encriptada
             ':edad' => $_POST['edadUsuario'],
             ':roles_id' => $_POST['roles_idUsuario'],
             ':arbitro_id' => $last_id,
         ]);
         break;
-    case 13:
+    case 13: // Entrenador
         $stmt = $pdo->prepare('INSERT INTO entrenadores (experiencia) VALUE (:experiencia)');
         $stmt->execute([
             ':experiencia' => $_POST['experienciaEntrenador'],
@@ -31,13 +34,13 @@ switch ($_POST['roles_idUsuario']) {
             ':nombre' => $_POST['nombreUsuario'],
             ':apellido' => $_POST['apellidoUsuario'],
             ':email' => $_POST['emailUsuario'],
-            ':password' => $_POST['passwordUsuario'],
+            ':password' => $passwordHash, // Contraseña encriptada
             ':edad' => $_POST['edadUsuario'],
             ':roles_id' => $_POST['roles_idUsuario'],
             ':entrenador_id' => $last_id,
         ]);
         break;
-    case 14:
+    case 14: // Jugador
         $stmt = $pdo->prepare('INSERT INTO jugadores (posicion, numero_camiseta, equipo_id) VALUE (:posicion, :numero_camiseta, :equipo_id)');
         $stmt->execute([
             ':posicion' => $_POST['posicionJugador'],
@@ -50,19 +53,19 @@ switch ($_POST['roles_idUsuario']) {
             ':nombre' => $_POST['nombreUsuario'],
             ':apellido' => $_POST['apellidoUsuario'],
             ':email' => $_POST['emailUsuario'],
-            ':password' => $_POST['passwordUsuario'],
+            ':password' => $passwordHash, // Contraseña encriptada
             ':edad' => $_POST['edadUsuario'],
             ':roles_id' => $_POST['roles_idUsuario'],
             ':jugador_id' => $last_id,
         ]);
         break;
-    default:
+    default: // Otro rol (si existe)
         $stmt = $pdo->prepare('INSERT INTO usuarios (nombre, apellido, email, password, edad, roles_id) VALUE (:nombre, :apellido, :email, :password, :edad, :roles_id)');
         $stmt->execute([
             ':nombre' => $_POST['nombreUsuario'],
             ':apellido' => $_POST['apellidoUsuario'],
             ':email' => $_POST['emailUsuario'],
-            ':password' => $_POST['passwordUsuario'],
+            ':password' => $passwordHash, // Contraseña encriptada
             ':edad' => $_POST['edadUsuario'],
             ':roles_id' => $_POST['roles_idUsuario'],
         ]);

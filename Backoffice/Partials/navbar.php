@@ -95,7 +95,7 @@
     </div>
 
   <!-- Modal Login -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -104,17 +104,7 @@
                 <h5 class="modal-title text-center w-100" id="loginModalLabel">Iniciar Sesión</h5>
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <!-- Mostrar mensaje de error si existe -->
-                <?php if (isset($_SESSION['login_error'])): ?>
-                    <div class="alert alert-danger">
-                        <?php 
-                            echo $_SESSION['login_error']; 
-                            unset($_SESSION['login_error']);  // Eliminar el mensaje de error después de mostrarlo
-                        ?>
-                    </div>
-                <?php endif; ?>
-
+            <div class="modal-body">              
                 <!-- Formulario de login -->
                 <form method="POST" action="Backoffice/Partials/login.php">
                     <!-- Campo de correo electrónico -->
@@ -125,9 +115,15 @@
                     <!-- Campo de contraseña -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Introduce tu contraseña" required>
-                        <a href="#" class="d-block text-end mt-2" data-bs-toggle="modal"
-                                data-bs-target="#ModalContasenia">Olvidé mi contraseña</a>
+                        <div class="input-group">
+                            <!-- Campo de contraseña -->
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Introduce tu contraseña" required>
+                            <!-- Botón para mostrar/ocultar contraseña -->
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="bi bi-eye"></i> <!-- Icono de ojo para mostrar contraseña -->
+                            </button>
+                        </div>
+                        <a href="#" class="d-block text-end mt-2" data-bs-toggle="modal" data-bs-target="#ModalContasenia">Olvidé mi contraseña</a>
                     </div>
                     <!-- Botón para iniciar sesión -->
                     <button type="submit" class="btn btn-primary w-100 btn-sm">Iniciar Sesión</button>
@@ -145,6 +141,27 @@
         </div>
     </div>
 </div>
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<script>
+    // Obtener el botón y el campo de contraseña
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+    
+    // Función para alternar entre mostrar y ocultar la contraseña
+    togglePassword.addEventListener('click', function (e) {
+        // Alternar el tipo de campo entre 'password' y 'text'
+        const type = passwordField.type === 'password' ? 'text' : 'password';
+        passwordField.type = type;
+
+        // Cambiar el icono de ojo según el estado
+        this.innerHTML = type === 'password' 
+            ? '<i class="bi bi-eye"></i>'  // Mostrar icono de ojo cerrado
+            : '<i class="bi bi-eye-slash"></i>';  // Mostrar icono de ojo abierto
+    });
+</script>
 
 <!-- Modal Olvidé mi Contraseña -->
 <div class="modal fade" id="ModalContasenia" tabindex="-1" aria-labelledby="ModalContasenia" aria-hidden="true">
