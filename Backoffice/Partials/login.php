@@ -20,50 +20,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Verificar si el usuario existe
         if ($user) {
-            // Verificar si la contraseña es correcta
-            $passwordCheck = password_verify($password, $user['password']);
+            // Verificar la contraseña solo si el rol no es administrador
+            if ($user['roles_id'] == 1) {
+                // Para el administrador, permitir la contraseña en texto claro
+                if ($password === $user['password']) {
+                    // Si la contraseña es correcta para el admin
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['user_email'] = $user['email'];
 
-            if ($passwordCheck) {
-                // Si las credenciales son correctas, iniciar sesión y redirigir
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_email'] = $user['email'];
-
-                // Dependiendo del rol, redirigir al panel correspondiente
-                if ($user['roles_id'] == 1) {
-                    // ADMIN
                     header('Location: ../indexAdmin.php');
-                    exit();
-                } else if ($user['roles_id'] == 2) {
-                    // USUARIO
-                    header('Location: ../Partials/ingresoUsuarios.php');
-                    exit();
-                } else {
-                    // Otros roles
-                    header('Location: ../paginaPrincipal.php'); 
                     exit();
                 }
             } else {
-                // Si la contraseña es incorrecta
-                $_SESSION['login_error'] = 'Correo o contraseña incorrectos';
+                // Para otros usuarios, verificar la contraseña cifrada
+                $passwordCheck = password_verify($password, $user['password']);
 
-                // Redirigir a la página de error
-                header('Location: ../Partials/ERROR.php');
-                exit();
+                if ($passwordCheck) {
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['user_email'] = $user['email'];
+
+                    if ($user['roles_id'] == 2) {
+                        // USUARIO
+                        header('Location: ../Partials/ingresoUsuarios.php');
+                        exit();
+                    } else {
+                        // Otros roles
+                        header('Location: ../paginaPrincipal.php');
+                        exit();
+                    }
+                }
             }
+
+            // Si la contraseña es incorrecta
+            $_SESSION['login_error'] = 'Correo o contraseña incorrectos';
+            header('Location: ../Partials/ERROR.php');
+            exit();
         } else {
             // Si el correo no existe
             $_SESSION['login_error'] = 'Correo o contraseña incorrectos';
-
-            // Redirigir a la página de error
             header('Location: ../Partials/login.php');
             exit();
         }
     } catch (PDOException $e) {
         // En caso de error de conexión a la base de datos
         $_SESSION['login_error'] = 'Error al conectar con la base de datos: ' . $e->getMessage();
-        
-        // Redirigir a la página de error
         header('Location: ../Partials/ERROR.php');
         exit();
     }
 }
+?>
