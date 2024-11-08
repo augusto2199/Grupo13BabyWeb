@@ -1,21 +1,14 @@
 <?php
-// Conexión a la base de datos (ajusta los valores según tu configuración)
+
 $pdo = new PDO('mysql:host=localhost;dbname=babyfutbol', 'root', '');
 
-
-// Consulta para obtener todos los roles
 $query = "SELECT id, nombre FROM roles";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 
-// Recuperar los resultados como un array de objetos
 $roles = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-// Asegúrate de que los roles se han recuperado correctamente
-// var_dump($roles);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
